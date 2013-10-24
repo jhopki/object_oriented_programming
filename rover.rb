@@ -13,6 +13,11 @@ class Rover
   def starting_position
     @start_position
   end
+
+  def read_route(route)
+    route.split("")
+  end
+
   def move_one(direction)
     if direction == "N"
       @start_position[1] += 1
@@ -29,13 +34,6 @@ class Rover
   
   
   def turn(heading, direction_change)
-    # if direction_change == "L"
-    # directions = ["N","E","S","W"]
-      # new_heading = directions[x-1]
-    # elsif direction_change == "R"
-      # new_heading = directions[x+1]
-    # end
-    #or
     if direction_change == "L"
       new_heading = "W" if heading == "N"
       new_heading = "S" if heading == "W"
@@ -49,19 +47,18 @@ class Rover
       new_heading = "S" if heading == "E"
     end
   end
-
-end
-
-class Plateau #??? maybe not needed
-
-  def initialize(x,y)
-    @x = x
-    @y = y
+  def new_turn(direction_change)
+    directions = ["N","E","S","W"]
+    if direction_change == "R"
+      directions.rotate!(-1)
+    elsif direction_change == "L"
+      directions.rotate!(1)
+    else
+      puts "error"
+    end
+      new_heading = directions[0]
   end
-  def create_grid
 
-  end
-end
 # INPUT AND OUTPUT
  
 # Test Input:
@@ -79,3 +76,11 @@ rover1 = Rover.new("1 2 N")
 rover_route = "LMLMLMLMM"
 puts rover1.initial_heading
 puts rover1.starting_position
+
+rover1.read_route(rover_route).each do |x|
+  if x == "M"
+    new_position = rover1.move_one
+  elsif x == "L" || x == "R"
+    new_heading = rover1.turn
+    
+if L or R turn 
