@@ -49,13 +49,13 @@ list1 = {"book" => 12.49, "music CD" => 14.99, "chocolate bar" => 0.85}
 list2 = {"imported box of chocolates" => 10.00, "imported bottle of perfume" => 47.50}
 list3 = {"imported bottle of perfume" => 27.99, "bottle of perfume" => 18.99, "packet of headache pills" => 9.75, "imported box of chocolates" => 11.25}
 
-def some_method(some_hash)
+def sales_tax_calculator(shopping_list)
   exempt_items = ["book", "chocolate bar", "packet of headache pills"]
   imported_items = ["imported bottle of perfume"]
   exempt_imports = ["imported box of chocolates"]
   total_sales_tax = 0
   total_cost = 0
-  some_hash.each do |k,v| 
+  shopping_list.each do |k,v| 
     if exempt_items.include?(k)
       new_item = Exempt.new(k,v)
     elsif imported_items.include?(k)
@@ -76,7 +76,7 @@ def some_method(some_hash)
   puts "--------------------"
 end
 
-some_method(list1)
-some_method(list2)
-some_method(list3)
+sales_tax_calculator(list1)
+sales_tax_calculator(list2)
+sales_tax_calculator(list3)
 
