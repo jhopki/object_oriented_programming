@@ -26,3 +26,8 @@ instructor = Instructor.new("Chris")
 instructor.greeting
 student = Student.new("Cristina")
 student.greeting
+instructor.teach
+student.learn
+student.teach 
+#calling teach on the student doesn't work because the teach method is only defined 
+# in the instructor class, not the student or the Person class
