@@ -23,7 +23,7 @@ class Product
 
   def display_total
     item_total = total_price/100.0
-    puts "#{@name}: #{item_total}"  
+    puts "#{@name}: #{sprintf('%.2f',item_total)}"  
   end
 end
 
@@ -45,27 +45,9 @@ class ExemptImport < Exempt
   end
 end
 
-
-# product = Product.new("music_cd", 14.99)
-# puts product.sales_tax
-# puts product.total_price
-# imports = Imported.new("bottle of perfume", 27.99)
-# puts imports.sales_tax
-# puts imports.total_price
-# exempt_item = Exempt.new("chocolate bar", 0.85)
-# puts exempt_item.sales_tax
-# puts exempt_item.total_price
-# exemptimport = ExemptImport.new("box of chocolates", 11.25)
-# puts exemptimport.sales_tax
-# puts sprintf('%.2f',((exemptimport.total_price)/100.0))
-
-# puts exemptimport.display_total(exempt_item.sales_tax)
-
 list1 = {"book" => 12.49, "music CD" => 14.99, "chocolate bar" => 0.85}
 list2 = {"imported box of chocolates" => 10.00, "imported bottle of perfume" => 47.50}
 list3 = {"imported bottle of perfume" => 27.99, "bottle of perfume" => 18.99, "packet of headache pills" => 9.75, "imported box of chocolates" => 11.25}
-
-
 
 def some_method(some_hash)
   exempt_items = ["book", "chocolate bar", "packet of headache pills"]
@@ -91,6 +73,7 @@ def some_method(some_hash)
 
   puts "Sales Tax: #{sprintf('%.2f',total_sales_tax/100.0)}"
   puts "Total: #{total_cost/100.0}"
+  puts "--------------------"
 end
 
 some_method(list1)
