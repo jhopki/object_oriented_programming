@@ -15,11 +15,13 @@ class Product
     0.1
   end
   def sales_tax
-    @price*tax_rate
+    Utils::round(@price*tax_rate)
   end
   def total_price
-    sprintf('%.2f',((@price + sales_tax)/100.0))
+    (@price + sales_tax)
   end
+
+  
 end
 
 class Imported < Product
@@ -48,3 +50,9 @@ imports = Imported.new("bottle of perfume", 27.99)
 puts imports.sales_tax
 puts imports.total_price
 exempt_item = Exempt.new("chocolate bar", 0.85)
+puts exempt_item.sales_tax
+puts exempt_item.total_price
+exemptimport = ExemptImport.new("box of chocolates", 11.25)
+puts exemptimport.sales_tax
+puts exemptimport.total_price
+
