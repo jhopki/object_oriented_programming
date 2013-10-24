@@ -23,7 +23,7 @@ class Product
 
   def display_total
     item_total = total_price/100.0
-    puts "#{@name}: #{item_total}"
+    puts "#{@name}: #{item_total}"  
   end
 end
 
@@ -71,7 +71,8 @@ def some_method(some_hash)
   exempt_items = ["book", "chocolate bar", "packet of headache pills"]
   imported_items = ["imported bottle of perfume"]
   exempt_imports = ["imported box of chocolates"]
-
+  total_sales_tax = 0
+  total_cost = 0
   some_hash.each do |k,v| 
     if exempt_items.include?(k)
       new_item = Exempt.new(k,v)
@@ -82,13 +83,17 @@ def some_method(some_hash)
     else
       new_item = Product.new(k,v)
     end
-      
-    puts new_item.sales_tax
-    puts new_item.total_price
-    puts new_item.display_total
+    
+    total_sales_tax += new_item.sales_tax  
+    total_cost += new_item.total_price
+    new_item.display_total
   end
+
+  puts "Sales Tax: #{sprintf('%.2f',total_sales_tax/100.0)}"
+  puts "Total: #{total_cost/100.0}"
 end
 
 some_method(list1)
-
+some_method(list2)
+some_method(list3)
 
