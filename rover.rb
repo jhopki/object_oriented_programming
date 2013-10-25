@@ -9,6 +9,7 @@ class Rover
   end
 
   def starting_position
+    puts @start_position
     @start_position
   end
 
@@ -20,7 +21,9 @@ class Rover
     if @heading != @@directions[0]
       index = @@directions.index(@heading)
       @@directions.rotate!(index)
+      puts @@directions.inspect
     end
+    return @@directions
   end
 
   def move_one(position)
@@ -32,9 +35,12 @@ class Rover
       position[0] -= 1
     elsif @@directions[0] == "S" 
       position[1] -= 1
+      puts "moved south"
     else
       puts "error"      
     end
+    puts "moved one"
+    puts position.inspect
     return position
   end
   
@@ -54,28 +60,33 @@ class Rover
   # end
   def new_turn(direction_change)
     
-    if direction_change == "R"
-      @@directions.rotate!(-1)
-    elsif direction_change == "L"
+    if direction_change == "R" ||direction_change == "L"
       @@directions.rotate!(1)
+    # elsif direction_change == "L"
+      # @@directions.rotate!(1)
     else
       puts "error"
     end
       new_heading = @@directions[0]
+      puts new_heading
+      puts @@directions.inspect
+      return new_heading
   end
 
   def move_rover
     position = starting_position
     new_position =[]
     new_heading = initial_heading
+    puts new_heading
 
     read_route.each do |x|
       if x == "M"
         new_position = move_one(position)
-        puts new_position
+        # puts new_position
       elsif x == "L" || x == "R"
         new_heading = new_turn(x)
         # puts new_heading
+        puts "turned"
       end
     end
     puts "#{new_position} #{new_heading}"
@@ -86,10 +97,10 @@ rover1 = Rover.new("1 2 N","LMLMLMLMM")
 rover2 = Rover.new("3 3 E","MMRMMRMRRM")
 rover1.move_rover
 rover2.move_rover
-3,3
-4,3
-5,3
-5,2
-5,1
-4,1
-5,1
+# 3,3
+# 4,3
+# 5,3
+# 5,2
+# 5,1
+# 4,1
+# 5,1
